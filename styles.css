@@ -33,8 +33,9 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .brand { display: inline-flex; align-items: center; gap: .7em; text-decoration: none; font-family: var(--brand-font); font-size: clamp(19px, 1.45vw, 23px); font-weight: 600; letter-spacing: -.025em; }
 .site-header > .brand { color: #fff; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .42)); }
-.brand-mark { width: 1.05em; height: 1.05em; border: 1.5px solid currentColor; border-radius: 50%; position: relative; flex: 0 0 auto; }
-.brand-mark::after { content: ""; position: absolute; width: .44em; height: .44em; right: -.25em; top: -.25em; border: 1.5px solid currentColor; border-radius: 50%; }
+.brand-mark { width: 1.12em; height: 1.12em; border: 1.5px solid currentColor; border-radius: 50%; position: relative; flex: 0 0 auto; background: radial-gradient(circle at 32% 28%, currentColor 0 .055em, transparent .065em); }
+.brand-mark::before { content: ""; position: absolute; inset: .18em; border: 1px solid currentColor; border-radius: 50%; opacity: .78; }
+.brand-mark::after { content: ""; position: absolute; width: .28em; height: .28em; left: 50%; top: 50%; border: 1px solid currentColor; border-radius: 50%; opacity: .9; transform: translate(-50%, -50%); }
 .brand-name { display: inline-flex; align-items: center; gap: .28em; line-height: 1; }
 .brand-word { display: inline-block; position: relative; }
 .brand-light { --spot-x: 50%; --spot-y: 50%; --shadow-x: 0px; --shadow-y: 2px; isolation: isolate; transition: text-shadow .18s ease; }
