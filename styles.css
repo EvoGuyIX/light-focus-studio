@@ -35,7 +35,21 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .site-header > .brand { color: #fff; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .42)); }
 .brand-mark { width: 1.12em; height: 1.12em; border: 1.5px solid currentColor; border-radius: 50%; position: relative; flex: 0 0 auto; background: radial-gradient(circle at 32% 28%, currentColor 0 .055em, transparent .065em); }
 .brand-mark::before { content: ""; position: absolute; inset: .18em; border: 1px solid currentColor; border-radius: 50%; opacity: .78; }
-.brand-mark::after { content: ""; position: absolute; width: .28em; height: .28em; left: 50%; top: 50%; border: 1px solid currentColor; border-radius: 50%; opacity: .9; transform: translate(-50%, -50%); }
+.brand-mark::after { content: ""; position: absolute; width: .48em; height: .48em; left: 50%; top: 50%; border: 1px solid currentColor; border-radius: 50%; opacity: .86; background: repeating-conic-gradient(from 0deg, currentColor 0 1deg, transparent 1deg 60deg); transform: translate(-50%, -50%); transform-origin: center; }
+.brand-mark:hover::before { animation: lens-ring-adjust .72s cubic-bezier(.3,.75,.25,1); }
+.brand-mark:hover::after { animation: aperture-adjust .72s cubic-bezier(.3,.75,.25,1) forwards; }
+
+@keyframes lens-ring-adjust {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(.82); }
+}
+
+@keyframes aperture-adjust {
+  0% { transform: translate(-50%, -50%) rotate(0) scale(1); }
+  42% { transform: translate(-50%, -50%) rotate(28deg) scale(.55); }
+  72% { transform: translate(-50%, -50%) rotate(52deg) scale(.76); }
+  100% { transform: translate(-50%, -50%) rotate(60deg) scale(1); }
+}
 .brand-name { display: inline-flex; align-items: center; gap: .28em; line-height: 1; }
 .brand-word { display: inline-block; position: relative; }
 .brand-light { --spot-x: 50%; --spot-y: 50%; --shadow-x: 0px; --shadow-y: 2px; isolation: isolate; transition: text-shadow .18s ease; }
@@ -185,4 +199,6 @@ footer p { margin: 0; color: #a8aaa3; font-size: 12px; line-height: 1.6; }
   .brand-focus.is-focusing .focus-text { animation: none; }
   .brand-focus:hover::before,
   .brand-focus:hover::after { opacity: 1; transform: scale(1); }
+  .brand-mark:hover::before,
+  .brand-mark:hover::after { animation: none; }
 }
