@@ -33,11 +33,26 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .brand { display: inline-flex; align-items: center; gap: .7em; text-decoration: none; font-family: var(--brand-font); font-size: clamp(19px, 1.45vw, 23px); font-weight: 600; letter-spacing: -.025em; }
 .site-header > .brand { color: #fff; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .42)); }
-.brand-mark { width: 1.12em; height: 1.12em; border: 1.5px solid currentColor; border-radius: 50%; position: relative; flex: 0 0 auto; background: radial-gradient(circle at 32% 28%, currentColor 0 .055em, transparent .065em); }
+.brand-mark { width: 1.18em; height: 1.18em; border: 1.5px solid currentColor; border-radius: 50%; position: relative; flex: 0 0 auto; }
 .brand-mark::before { content: ""; position: absolute; inset: .18em; border: 1px solid currentColor; border-radius: 50%; opacity: .78; }
-.brand-mark::after { content: ""; position: absolute; width: .48em; height: .48em; left: 50%; top: 50%; border: 1px solid currentColor; border-radius: 50%; opacity: .86; background: repeating-conic-gradient(from 0deg, currentColor 0 1deg, transparent 1deg 60deg); transform: translate(-50%, -50%); transform-origin: center; }
+.brand-aperture {
+  position: absolute;
+  inset: .08em;
+  width: calc(100% - .16em);
+  height: calc(100% - .16em);
+  overflow: visible;
+  fill: rgba(0, 0, 0, .28);
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .34));
+  transform-origin: center;
+}
+.brand-aperture path { fill: none; opacity: .95; }
 .brand-mark:hover::before { animation: lens-ring-adjust .72s cubic-bezier(.3,.75,.25,1); }
-.brand-mark:hover::after { animation: aperture-adjust .72s cubic-bezier(.3,.75,.25,1) forwards; }
+.brand-mark:hover .brand-aperture { animation: aperture-adjust .72s cubic-bezier(.3,.75,.25,1) forwards; }
 
 @keyframes lens-ring-adjust {
   0%, 100% { transform: scale(1); }
@@ -45,12 +60,37 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 @keyframes aperture-adjust {
-  0% { transform: translate(-50%, -50%) rotate(0) scale(1); }
-  42% { transform: translate(-50%, -50%) rotate(28deg) scale(.55); }
-  72% { transform: translate(-50%, -50%) rotate(52deg) scale(.76); }
-  100% { transform: translate(-50%, -50%) rotate(60deg) scale(1); }
+  0% { transform: rotate(0) scale(1); }
+  42% { transform: rotate(28deg) scale(.68); }
+  72% { transform: rotate(52deg) scale(.82); }
+  100% { transform: rotate(60deg) scale(1); }
 }
+.brand-lockup { display: inline-flex; width: max-content; flex-direction: column; }
 .brand-name { display: inline-flex; align-items: center; gap: .28em; line-height: 1; }
+.brand-studio {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: .75em;
+  margin-top: .48em;
+  font-family: "Manrope", sans-serif;
+  font-size: .34em;
+  font-weight: 600;
+  line-height: .7;
+  letter-spacing: .38em;
+  text-indent: .38em;
+  text-transform: uppercase;
+  transform: scaleY(.74);
+  transform-origin: center top;
+}
+.brand-studio::before,
+.brand-studio::after {
+  content: "";
+  height: 1px;
+  background: currentColor;
+  opacity: .72;
+}
 .brand-word { display: inline-block; position: relative; }
 .brand-light { --spot-x: 50%; --spot-y: 50%; --shadow-x: 0px; --shadow-y: 2px; isolation: isolate; transition: text-shadow .18s ease; }
 .brand-light::before {
@@ -213,5 +253,5 @@ footer p { margin: 0; color: #a8aaa3; font-size: 12px; line-height: 1.6; }
   .brand-focus:hover::before,
   .brand-focus:hover::after { opacity: 1; transform: scale(1); }
   .brand-mark:hover::before,
-  .brand-mark:hover::after { animation: none; }
+  .brand-mark:hover .brand-aperture { animation: none; }
 }
