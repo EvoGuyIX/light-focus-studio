@@ -48,3 +48,44 @@ if (!reducedMotion) {
   window.addEventListener('resize', requestPaint);
   paint();
 }
+
+
+document.querySelectorAll('.brand-light').forEach((word) => {
+  const trackLight = (event) => {
+    const rect = word.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const shadowX = -((x / rect.width) - .5) * 6;
+    const shadowY = 2 - ((y / rect.height) - .5) * 4;
+    word.style.setProperty('--spot-x', `${x.toFixed(1)}px`);
+    word.style.setProperty('--spot-y', `${y.toFixed(1)}px`);
+    word.style.setProperty('--shadow-x', `${shadowX.toFixed(1)}px`);
+    word.style.setProperty('--shadow-y', `${shadowY.toFixed(1)}px`);
+    word.classList.add('is-lit');
+  };
+
+  word.addEventListener('pointerenter', trackLight);
+  word.addEventListener('pointermove', trackLight);
+  word.addEventListener('pointerleave', () => word.classList.remove('is-lit'));
+});
+
+document.querySelectorAll('.brand-focus').forEach((word) => {
+  const focusText = word.querySelector('.focus-text');
+
+  word.addEventListener('pointerenter', () => {
+    word.classList.remove('is-focusing', 'is-locked');
+    void word.offsetWidth;
+    word.classList.add('is-focusing');
+  });
+
+  word.addEventListener('pointerleave', () => {
+    word.classList.remove('is-focusing', 'is-locked');
+  });
+
+  focusText.addEventListener('animationend', (event) => {
+    if (event.animationName === 'focus-breathe' && word.matches(':hover')) {
+      word.classList.remove('is-focusing');
+      word.classList.add('is-locked');
+    }
+  });
+});
