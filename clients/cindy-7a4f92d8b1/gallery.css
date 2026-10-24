@@ -149,6 +149,12 @@ h1 {
 }
 .photo-card:nth-child(5n + 1), .photo-card:nth-child(5n + 4) { grid-column: span 7; }
 .photo-card:nth-child(5n + 2), .photo-card:nth-child(5n + 5) { grid-column: span 5; }
+.photo-card.portrait {
+  grid-column: span 4;
+  width: 100%;
+  max-width: 650px;
+  justify-self: center;
+}
 .photo-card.hidden { display: none; }
 .photo-button {
   position: relative;
@@ -167,7 +173,10 @@ h1 {
   object-fit: cover;
   transition: transform 500ms cubic-bezier(.2,.7,.2,1);
 }
-.photo-card.portrait .photo-button img { object-position: 50% 48%; }
+.photo-card.portrait .photo-button img {
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+}
 @media (hover: hover) {
   .photo-button:hover img { transform: scale(1.018); }
 }
