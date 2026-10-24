@@ -1,4 +1,5 @@
 const photos = [
+  { file: "00-FrontExterior.jpg", title: "Front Exterior", alt: "Front exterior of the property" },
   { file: "1-KitchenLiving_1.jpg", title: "Kitchen & Living", alt: "Open kitchen and living area with a large stone island" },
   { file: "2-KitchenCounterDetail.jpg", title: "Kitchen Detail", alt: "Detail view of the kitchen island and counters" },
   { file: "3-KitchenRange.jpg", title: "Kitchen Range", alt: "Kitchen range and cabinetry" },
@@ -12,7 +13,8 @@ const photos = [
   { file: "11-Bedroom2.jpg", title: "Second Bedroom", alt: "Second bedroom interior" },
 ];
 
-const storageKey = "lf-cindy-1150-favorites";
+const previousStorageKey = "lf-cindy-1150-favorites";
+const storageKey = "lf-cindy-1150-favorites-v2";
 const grid = document.querySelector("#photo-grid");
 const lightbox = document.querySelector("#lightbox");
 const lightboxImage = document.querySelector("#lightbox-image");
@@ -25,7 +27,10 @@ const favoritesFilter = document.querySelector("#favorites-filter");
 const favoriteCount = document.querySelector("#favorite-count");
 const visibleCount = document.querySelector("#visible-count");
 
-let favorites = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+const savedFavorites = localStorage.getItem(storageKey);
+const previousFavorites = JSON.parse(localStorage.getItem(previousStorageKey) || "[]");
+let favorites = new Set(savedFavorites ? JSON.parse(savedFavorites) : previousFavorites.map((index) => index + 1));
+if (!savedFavorites && previousFavorites.length) localStorage.removeItem(previousStorageKey);
 let currentIndex = 0;
 let showingFavorites = false;
 let slideshowTimer = null;
