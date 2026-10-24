@@ -50,7 +50,7 @@ if (!reducedMotion) {
 }
 
 
-document.querySelectorAll('.brand-light').forEach((word) => {
+if (!reducedMotion) document.querySelectorAll('.brand-light').forEach((word) => {
   const trackLight = (event) => {
     const rect = word.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -69,7 +69,7 @@ document.querySelectorAll('.brand-light').forEach((word) => {
   word.addEventListener('pointerleave', () => word.classList.remove('is-lit'));
 });
 
-document.querySelectorAll('.brand-focus').forEach((word) => {
+if (!reducedMotion) document.querySelectorAll('.brand-focus').forEach((word) => {
   const focusText = word.querySelector('.focus-text');
 
   word.addEventListener('pointerenter', () => {
