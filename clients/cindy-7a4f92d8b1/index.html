@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="theme-color" content="#f3f0e9" />
+    <title>1150 Ventura Blvd, Space 16 · Light &amp; Focus Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="gallery.css?v=1" />
+    <script src="gallery.js?v=1" defer></script>
+  </head>
+  <body>
+    <header class="gallery-header">
+      <a class="brand" href="../../" aria-label="Light and Focus Studio home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,8.5 22.5,12.25 22.5,19.75 16,23.5 9.5,19.75 9.5,12.25"></polygon><path d="M16 8.5 20 3.9M22.5 12.25 28.2 11.2M22.5 19.75 26.2 24.3M16 23.5 12 28.1M9.5 19.75 3.8 20.8M9.5 12.25 5.8 7.7"></path></svg>
+        <span><strong>Light &amp; Focus</strong><small>Studio</small></span>
+      </a>
+      <span class="private-label">Private client gallery</span>
+    </header>
+
+    <main>
+      <section class="gallery-intro">
+        <div>
+          <p class="eyebrow">Delivered for Cindy</p>
+          <h1>1150 Ventura Blvd<br />Space 16</h1>
+          <p class="summary">11 individually finished photographs</p>
+        </div>
+        <a class="primary-action" href="Light-and-Focus-1150-Ventura-Sp16.zip" download>
+          <span>Download all</span><small>Original resolution · ZIP</small>
+        </a>
+      </section>
+
+      <section class="gallery-toolbar" aria-label="Gallery controls">
+        <p><strong id="visible-count">11</strong> photographs</p>
+        <div>
+          <button id="favorites-filter" class="toolbar-button" type="button" aria-pressed="false">Favorites <span id="favorite-count">0</span></button>
+          <button id="start-slideshow" class="toolbar-button" type="button">Start slideshow</button>
+        </div>
+      </section>
+
+      <section id="photo-grid" class="photo-grid" aria-label="Property photographs"></section>
+
+      <section class="delivery-note">
+        <p>Prepared with care by</p>
+        <h2>Light &amp; Focus Studio</h2>
+        <a href="mailto:hello@lightandfocusstudio.com">hello@lightandfocusstudio.com</a>
+      </section>
+    </main>
+
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+      <div class="lightbox-topbar">
+        <p id="lightbox-counter">1 / 11</p>
+        <div>
+          <button id="lightbox-favorite" type="button" aria-label="Favorite this photograph" aria-pressed="false">♡</button>
+          <a id="lightbox-download" href="#" download aria-label="Download this photograph">Download</a>
+          <button id="lightbox-play" type="button" aria-label="Start slideshow" aria-pressed="false">Play</button>
+          <button id="lightbox-close" type="button" aria-label="Close photo viewer">Close</button>
+        </div>
+      </div>
+      <button id="lightbox-previous" class="lightbox-arrow previous" type="button" aria-label="Previous photograph">‹</button>
+      <figure>
+        <img id="lightbox-image" src="" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+      <button id="lightbox-next" class="lightbox-arrow next" type="button" aria-label="Next photograph">›</button>
+    </div>
+  </body>
+</html>
