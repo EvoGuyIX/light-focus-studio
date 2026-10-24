@@ -207,7 +207,7 @@ h1 { font-size: clamp(50px, 6.8vw, 108px); line-height: 1.02; }
 .portfolio-controls button {
   width: 46px;
   height: 46px;
-  border: 1px solid rgba(23, 24, 22, .32);
+  border: 2px solid #62645f;
   border-radius: 50%;
   background: transparent;
   color: var(--ink);
@@ -216,6 +216,8 @@ h1 { font-size: clamp(50px, 6.8vw, 108px); line-height: 1.02; }
   transition: color .2s ease, background .2s ease, transform .2s ease;
 }
 .portfolio-controls button:hover { color: white; background: var(--ink); transform: translateY(-2px); }
+.portfolio-controls button:focus-visible { outline-color: var(--ink); outline-offset: 4px; }
+.portfolio-controls button:disabled { color: #777972; border-color: #9b9c96; background: transparent; cursor: not-allowed; transform: none; opacity: .72; }
 .portfolio-track {
   display: flex;
   align-items: start;
@@ -344,5 +346,6 @@ footer p { margin: 0; color: #a8aaa3; font-size: 12px; line-height: 1.6; }
   .brand-mark:hover::before,
   .brand-mark:hover .brand-aperture { animation: none; }
   .button:hover { transform: none; }
+  .portfolio-controls button:hover { transform: none; }
   .sticky-photo { transition: none; }
 }

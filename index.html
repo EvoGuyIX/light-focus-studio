@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=13" />
-    <script src="script.js?v=6" defer></script>
+    <link rel="stylesheet" href="styles.css?v=14" />
+    <script src="script.js?v=7" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#top">Skip to content</a>
@@ -56,12 +56,12 @@
             <h2 id="portfolio-heading">A closer look.</h2>
           </div>
           <div class="portfolio-controls" aria-label="Portfolio controls">
-            <button type="button" data-portfolio-scroll="-1" aria-label="Previous photographs">←</button>
-            <button type="button" data-portfolio-scroll="1" aria-label="Next photographs">→</button>
+            <button type="button" data-portfolio-scroll="-1" aria-label="Previous photographs" aria-controls="portfolio-track" disabled><span aria-hidden="true">←</span></button>
+            <button type="button" data-portfolio-scroll="1" aria-label="Next photographs" aria-controls="portfolio-track" disabled><span aria-hidden="true">→</span></button>
           </div>
         </div>
         <div class="portfolio-track" id="portfolio-track" tabindex="0" aria-label="Selected portfolio photographs" aria-live="polite">
-          <p class="portfolio-status">Loading selected work…</p>
+          <p class="portfolio-status" role="status">Loading selected work…</p>
         </div>
         <a class="portfolio-link" href="https://portfolio.lightandfocusstudio.com/">View the full portfolio <span aria-hidden="true">↗</span></a>
       </section>

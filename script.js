@@ -15,6 +15,14 @@ const portfolioTrack = document.getElementById('portfolio-track');
 
 if (portfolioTrack) {
   const portfolioEndpoint = 'https://portfolio.lightandfocusstudio.com/api/public/portfolio';
+  const portfolioButtons = [...document.querySelectorAll('[data-portfolio-scroll]')];
+  const updatePortfolioButtons = () => {
+    const maxScroll = Math.max(0, portfolioTrack.scrollWidth - portfolioTrack.clientWidth);
+    for (const button of portfolioButtons) {
+      const direction = Number(button.dataset.portfolioScroll);
+      button.disabled = direction < 0 ? portfolioTrack.scrollLeft <= 2 : portfolioTrack.scrollLeft >= maxScroll - 2;
+    }
+  };
 
   fetch(portfolioEndpoint)
     .then((response) => {
@@ -49,18 +57,23 @@ if (portfolioTrack) {
         empty.textContent = 'New work is being selected.';
         portfolioTrack.appendChild(empty);
       }
+
+      requestAnimationFrame(updatePortfolioButtons);
     })
     .catch(() => {
       const status = portfolioTrack.querySelector('.portfolio-status');
       if (status) status.textContent = 'Selected work is temporarily unavailable.';
     });
 
-  document.querySelectorAll('[data-portfolio-scroll]').forEach((button) => {
+  portfolioButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const direction = Number(button.dataset.portfolioScroll) || 1;
       portfolioTrack.scrollBy({ left: direction * portfolioTrack.clientWidth * .82, behavior: reducedMotion ? 'auto' : 'smooth' });
     });
   });
+
+  portfolioTrack.addEventListener('scroll', updatePortfolioButtons, { passive: true });
+  window.addEventListener('resize', updatePortfolioButtons);
 }
 
 if (!reducedMotion) {
