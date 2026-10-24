@@ -35,6 +35,10 @@ function photoPath(folder, file) {
   return folder + "/" + encodeURIComponent(file);
 }
 
+function webpPath(folder, file) {
+  return folder + "/" + encodeURIComponent(file.replace(/\.jpg$/i, ".webp"));
+}
+
 function saveFavorites() {
   localStorage.setItem(storageKey, JSON.stringify([...favorites]));
   favoriteCount.textContent = favorites.size;
@@ -55,7 +59,7 @@ function renderGallery() {
     const selected = favorites.has(index);
     return '<article class="photo-card' + (photo.portrait ? ' portrait' : '') + '" style="animation-delay:' + Math.min(order * 45, 360) + 'ms">' +
       '<button class="photo-button" type="button" data-open="' + index + '" aria-label="Open ' + photo.title + '">' +
-      '<img src="' + photoPath("previews", photo.file) + '" alt="' + photo.alt + '" loading="lazy" decoding="async" /></button>' +
+      '<img src="' + webpPath("thumbs", photo.file) + '" alt="' + photo.alt + '" loading="lazy" decoding="async" /></button>' +
       '<div class="photo-meta"><p><span>' + String(index + 1).padStart(2, "0") + '</span>' + photo.title + '</p>' +
       '<button class="favorite-button" type="button" data-favorite="' + index + '" aria-label="' + (selected ? "Remove from" : "Add to") + ' favorites" aria-pressed="' + selected + '">' + (selected ? "♥" : "♡") + '</button></div></article>';
   }).join("");
@@ -63,7 +67,7 @@ function renderGallery() {
 
 function updateLightbox() {
   const photo = photos[currentIndex];
-  lightboxImage.src = photoPath("previews", photo.file);
+  lightboxImage.src = webpPath("display", photo.file);
   lightboxImage.alt = photo.alt;
   lightboxCaption.textContent = photo.title;
   lightboxCounter.textContent = (currentIndex + 1) + " / " + photos.length;

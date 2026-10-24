@@ -107,10 +107,9 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  background: rgba(243, 240, 233, 0.9);
+  background: rgba(243, 240, 233, 0.98);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(14px);
 }
 .gallery-toolbar p { margin: 0; color: var(--muted); font-size: 12px; }
 .gallery-toolbar p strong { color: var(--ink); }
@@ -145,6 +144,8 @@ h1 {
   grid-column: span 4;
   margin: 0 0 clamp(16px, 2.5vw, 38px);
   animation: rise 420ms both;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
 }
 .photo-card:nth-child(5n + 1), .photo-card:nth-child(5n + 4) { grid-column: span 7; }
 .photo-card:nth-child(5n + 2), .photo-card:nth-child(5n + 5) { grid-column: span 5; }
@@ -164,10 +165,12 @@ h1 {
   aspect-ratio: 3 / 2;
   display: block;
   object-fit: cover;
-  transition: transform 500ms cubic-bezier(.2,.7,.2,1), filter 250ms ease;
+  transition: transform 500ms cubic-bezier(.2,.7,.2,1);
 }
 .photo-card.portrait .photo-button img { object-position: 50% 48%; }
-.photo-button:hover img { transform: scale(1.018); filter: brightness(0.95); }
+@media (hover: hover) {
+  .photo-button:hover img { transform: scale(1.018); }
+}
 .photo-meta {
   padding: 12px 1px 0;
   display: flex;
