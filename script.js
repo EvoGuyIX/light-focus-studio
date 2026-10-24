@@ -11,6 +11,58 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((node) => revealObserver.observe(node));
 
+const portfolioTrack = document.getElementById('portfolio-track');
+
+if (portfolioTrack) {
+  const portfolioEndpoint = 'https://portfolio.lightandfocusstudio.com/api/public/portfolio';
+
+  fetch(portfolioEndpoint)
+    .then((response) => {
+      if (!response.ok) throw new Error('Portfolio unavailable');
+      return response.json();
+    })
+    .then((data) => {
+      portfolioTrack.replaceChildren();
+      const images = Array.isArray(data.images) ? data.images : [];
+
+      for (const image of images) {
+        const figure = document.createElement('figure');
+        figure.className = 'portfolio-card' + (image.portrait ? ' portrait' : '');
+
+        const photo = document.createElement('img');
+        photo.src = image.src;
+        photo.alt = image.portfolioDescription || image.name || image.shoot || 'Portfolio photograph';
+        photo.loading = 'lazy';
+        photo.decoding = 'async';
+
+        const caption = document.createElement('figcaption');
+        const place = [image.development, image.city].filter(Boolean).join(' · ');
+        caption.textContent = [place || image.shoot || '', image.portfolioDescription || ''].filter(Boolean).join(' — ');
+
+        figure.append(photo, caption);
+        portfolioTrack.appendChild(figure);
+      }
+
+      if (!images.length) {
+        const empty = document.createElement('p');
+        empty.className = 'portfolio-status';
+        empty.textContent = 'New work is being selected.';
+        portfolioTrack.appendChild(empty);
+      }
+    })
+    .catch(() => {
+      const status = portfolioTrack.querySelector('.portfolio-status');
+      if (status) status.textContent = 'Selected work is temporarily unavailable.';
+    });
+
+  document.querySelectorAll('[data-portfolio-scroll]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const direction = Number(button.dataset.portfolioScroll) || 1;
+      portfolioTrack.scrollBy({ left: direction * portfolioTrack.clientWidth * .82, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+  });
+}
+
 if (!reducedMotion) {
   const media = [...document.querySelectorAll('[data-parallax]')];
   const panels = [...document.querySelectorAll('.story-panel')];
