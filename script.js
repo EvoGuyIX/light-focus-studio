@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js');
+
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -39,7 +41,8 @@ if (portfolioTrack) {
 
         const photo = document.createElement('img');
         photo.src = image.src;
-        photo.alt = image.portfolioDescription || image.name || image.shoot || 'Portfolio photograph';
+        const portfolioPlace = [image.shoot, image.city].filter(Boolean).join(' in ');
+        photo.alt = image.portfolioDescription || (portfolioPlace ? `Light & Focus Studio portfolio photograph from ${portfolioPlace}` : 'Light & Focus Studio portfolio photograph');
         photo.loading = 'lazy';
         photo.decoding = 'async';
 
